@@ -1,0 +1,16 @@
+#link:hover {
+  transition: all 0.12s ease-in-out;
+}
+
+#searchProducts {
+  width: 23rem;
+  padding: 8px 20px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  position: relative;
+}
+
+#searchProducts:focus {
+  outline: none;
+  border: 1px solid #e15f97;
+}
