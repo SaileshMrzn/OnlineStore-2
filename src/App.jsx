@@ -10,9 +10,9 @@ function App() {
       <BrowserRouter>
         <Navbar />
         <Routes>
-          <Route path="/" element={<Content />} />
-          <Route path="/search" element={<Search />} />
-          <Route path="/item/:id" element={<ItemDetails />} />
+          <Route path="/" exact element={<Content />} />
+          {/* <Route path="/search" element={<Search />} />
+          <Route path="/item/:id" element={<ItemDetails />} /> */}
         </Routes>
       </BrowserRouter>
     </>

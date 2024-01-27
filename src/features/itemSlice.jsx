@@ -9,16 +9,16 @@ export const fetchAsyncItems = createAsyncThunk(
   }
 );
 
-export const fetchAsyncItemDetail = createAsyncThunk(
-  "items/fetchAsyncItems",
-  async (id) => {
-    const res = await axios.get(`https://fakestoreapi.com/products/${id}`);
-    return res.data;
-  }
-);
+// export const fetchAsyncItemDetail = createAsyncThunk(
+//   "items/fetchAsyncItems",
+//   async (id) => {
+//     const res = await axios.get(`https://fakestoreapi.com/products/${id}`);
+//     return res.data;
+//   }
+// );
 
 const initialState = {
-  item: {},
+  items: [],
   itemDetail: {},
 };
 
@@ -27,10 +27,19 @@ const itemSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(fetchAsyncItems.fulfilled, (state, { payload }) => {
-      return { ...state, item: payload, loader: false };
-    });
+    builder
+      .addCase(fetchAsyncItems.pending, () => {
+        console.log("pending");
+      })
+      .addCase(fetchAsyncItems.fulfilled, (state, { payload }) => {
+        state.items = payload;
+      })
+
+      .addCase(fetchAsyncItems.rejected, () => {
+        console.log("rejected");
+      });
   },
 });
 
 export default itemSlice.reducer;
+export const getAllItems = (state) => state.items.items;
