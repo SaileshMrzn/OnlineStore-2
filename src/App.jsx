@@ -11,8 +11,8 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" exact element={<Content />} />
-          {/* <Route path="/search" element={<Search />} />
-          <Route path="/item/:id" element={<ItemDetails />} /> */}
+          <Route path="/item/:id" exact element={<ItemDetails />} />
+          {/* <Route path="/search" element={<Search />} />*/}
         </Routes>
       </BrowserRouter>
     </>
