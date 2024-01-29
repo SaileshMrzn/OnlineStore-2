@@ -12,7 +12,6 @@ function App() {
         <Routes>
           <Route path="/" exact element={<Content />} />
           <Route path="/item/:id" exact element={<ItemDetails />} />
-          {/* <Route path="/search" element={<Search />} />*/}
         </Routes>
       </BrowserRouter>
     </>
