@@ -2,11 +2,16 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "../style.css";
 import { useSelector } from "react-redux";
-import { getAllItems, getLoaderState } from "../features/itemSlice";
+import {
+  getAllItems,
+  getLoaderState,
+  setFilteredItems,
+} from "../features/itemSlice";
 
 export default function Items() {
   const items = useSelector(getAllItems);
   const loader = useSelector(getLoaderState);
+  const filteredItems = useSelector((state) => state.items.filteredItems);
 
   return (
     <>
@@ -15,7 +20,7 @@ export default function Items() {
           Loading...
         </div>
       ) : (
-        items.map((item) => (
+        (filteredItems.length > 0 ? filteredItems : items).map((item) => (
           <div className="xl:w-[20%] md:w-[30%] p-5">
             <div className="border-solid border-2 border-grey-100 p-6 rounded-lg">
               <Link to={`/item/${item.id}`} className="hover:text-pink-600">

@@ -18,8 +18,8 @@ export default function Content() {
       </h2>
       <div className="flex flex-wrap justify-center items-center mx-5">
         <Items />
-        <Footer />
       </div>
+      <Footer />
     </>
   );
 }

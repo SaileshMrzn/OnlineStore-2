@@ -20,6 +20,7 @@ export const fetchAsyncItemDetail = createAsyncThunk(
 const initialState = {
   items: [],
   itemDetails: [],
+  filteredItems: [],
   loader: true,
 };
 
@@ -29,6 +30,9 @@ const itemSlice = createSlice({
   reducers: {
     removeItemDetail: (state) => {
       state.itemDetails = [];
+    },
+    setFilteredItems(state, { payload }) {
+      state.filteredItems = payload;
     },
   },
   extraReducers: (builder) => {
@@ -56,4 +60,4 @@ export default itemSlice.reducer;
 export const getAllItems = (state) => state.items.items;
 export const getAllDetails = (state) => state.items.itemDetails;
 export const getLoaderState = (state) => state.items.loader;
-export const { removeItemDetail } = itemSlice.actions;
+export const { removeItemDetail, setFilteredItems } = itemSlice.actions;

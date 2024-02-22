@@ -1,22 +1,33 @@
 // import React from "react";
 import { Link } from "react-router-dom";
 import { IoSearch } from "react-icons/io5";
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { fetchAsyncItems } from "../features/itemSlice";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  fetchAsyncItems,
+  getAllItems,
+  setFilteredItems,
+} from "../features/itemSlice";
 
 export default function Navbar() {
   const dispatch = useDispatch();
   const [term, setTerm] = useState("");
+  const items = useSelector(getAllItems);
+  // const filteredItems = useSelector((state) => state.items.filteredItems);
+
   const handleSearch = (e) => {
+    const filteredItems = items.filter((item) =>
+      item.title.toLowerCase().includes(term.toLowerCase())
+    );
+    console.log(filteredItems);
+    dispatch(setFilteredItems(filteredItems));
     e.preventDefault();
-    if (term.length === 0) {
-      alert("Please enter a search term");
-    } else {
-      const searchVal = dispatch(fetchAsyncItems());
-      setTerm(searchVal);
-    }
   };
+
+  useEffect(() => {
+    dispatch(fetchAsyncItems());
+  }, [dispatch]);
+
   return (
     <>
       <header className="text-gray-600 body-font bg-cyan-200 bg-opacity-40 shadow-md">
@@ -30,12 +41,6 @@ export default function Navbar() {
             </a>
           </a>
           <nav className="md:ml-auto flex flex-wrap items-center text-base justify-center">
-            {/* <Link className="mr-5 hover:text-pink-600" to="/">
-              Home
-            </Link> */}
-            {/* <Link className="hover:text-pink-600" to="/search">
-              Search
-            </Link> */}
             <form action="" className="relative" onSubmit={handleSearch}>
               <input
                 type="text"
