@@ -119,6 +119,6 @@
   box-shadow: 0 0 1px #183153;
 }
 
-.input:checked + .slider:before {
+.switch.dark .input:checked + .slider:before {
   transform: translateX(28px);
 }
