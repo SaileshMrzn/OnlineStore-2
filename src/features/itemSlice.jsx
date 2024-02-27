@@ -22,6 +22,7 @@ const initialState = {
   itemDetails: [],
   filteredItems: [],
   loader: true,
+  dark: false,
 };
 
 const itemSlice = createSlice({
@@ -33,6 +34,9 @@ const itemSlice = createSlice({
     },
     setFilteredItems(state, { payload }) {
       state.filteredItems = payload;
+    },
+    setThemeState(state, { payload }) {
+      state.dark = payload;
     },
   },
   extraReducers: (builder) => {
@@ -60,4 +64,6 @@ export default itemSlice.reducer;
 export const getAllItems = (state) => state.items.items;
 export const getAllDetails = (state) => state.items.itemDetails;
 export const getLoaderState = (state) => state.items.loader;
-export const { removeItemDetail, setFilteredItems } = itemSlice.actions;
+export const getThemeState = (state) => state.items.dark;
+export const { removeItemDetail, setFilteredItems, setThemeState } =
+  itemSlice.actions;
