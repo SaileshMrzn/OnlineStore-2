@@ -31,7 +31,7 @@ export default function Content() {
             Top Deals
           </h2>
           <div className="flex flex-wrap justify-center items-center px-5">
-            <Items className="text-white" />
+            <Items />
           </div>
           <Footer />
         </div>
