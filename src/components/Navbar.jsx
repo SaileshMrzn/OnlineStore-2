@@ -12,6 +12,7 @@ import {
   setThemeState,
 } from "../features/itemSlice";
 import useLocalStorage from "../hooks/useLocalStorage";
+import shoppingCart from "../icons/basket2.png";
 
 export default function Navbar() {
   const dispatch = useDispatch();
@@ -47,10 +48,11 @@ export default function Navbar() {
 
   console.log(theme);
   console.log(theme_state);
+
   return (
     <>
       {theme !== "dark" ? (
-        <header className="text-gray-600 body-font bg-cyan-200 bg-opacity-40 shadow-md">
+        <header className="text-gray-600 body-font bg-cyan-200 bg-opacity-50 shadow-md">
           <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
             <a className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
               <a href="/" className="ml-3 text-xl">
@@ -61,10 +63,13 @@ export default function Navbar() {
               </a>
             </a>
             <nav className="md:ml-auto flex flex-wrap items-center text-base justify-center">
+              <div>
+                <img src={shoppingCart} alt="" />
+              </div>
               <form action="" className="relative" onSubmit={handleSearch}>
                 <input
                   type="text"
-                  className="bg-pink-300 rounded-lg h-[32px] w-[15rem] placeholder:text-slate-100 placeholder:text-sm px-3 mx-4"
+                  className="bg-pink-400 rounded-lg h-[32px] w-[15rem] placeholder:text-slate-100 placeholder:text-sm px-3 mx-4"
                   placeholder="Search for products"
                   value={term}
                   onChange={(e) => setTerm(e.target.value)}
@@ -100,7 +105,7 @@ export default function Navbar() {
           <div className="sidebar"></div>
         </header>
       ) : (
-        <header className="text-white body-font bg-slate-900 shadow-md">
+        <header className="text-white body-font bg-slate-900 shadow-slate-800 drop-shadow-md shadow-md">
           <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
             <a className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
               <a href="/" className="ml-3 text-xl">
@@ -111,10 +116,13 @@ export default function Navbar() {
               </a>
             </a>
             <nav className="md:ml-auto flex flex-wrap items-center text-base justify-center">
+              <div>
+                <img src={shoppingCart} alt="" />
+              </div>
               <form action="" className="relative" onSubmit={handleSearch}>
                 <input
                   type="text"
-                  className="bg-pink-300 rounded-lg h-[32px] w-[15rem] placeholder:text-slate-100 placeholder:text-sm px-3 mx-4"
+                  className="bg-pink-400 rounded-lg h-[32px] w-[15rem] placeholder:text-slate-100 placeholder:text-sm px-3 mx-4"
                   placeholder="Search for products"
                   value={term}
                   onChange={(e) => setTerm(e.target.value)}

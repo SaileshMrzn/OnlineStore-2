@@ -118,8 +118,8 @@ export default function ItemDetails() {
         </div>
       ) : (
         details.map((detail) => (
-          <section className="text-gray-600 body-font bg-slate-900 h-[93vh]">
-            <div className="container px-5 py-24 mx-auto">
+          <section className="text-gray-600 body-font bg-slate-900 min-h-[92vh] max-h-[50rem]">
+            <div className="container px-5 py-24 mx-auto overflow-hidden">
               <div className="lg:w-4/5 mx-auto flex flex-wrap">
                 <img
                   alt="ecommerce"
