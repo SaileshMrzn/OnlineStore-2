@@ -13,29 +13,20 @@ export default function Content() {
 
   const theme = useSelector(getThemeState);
 
+  const textBold = theme === false ? "text-gray-900" : "text-gray-100";
+  const background = theme === false ? "" : "bg-slate-900";
+
   return (
     <>
-      {theme == false ? (
-        <div>
-          <h2 className="text-gray-900 title-font text-center text-xl my-3 mt-6">
-            Top Deals
-          </h2>
-          <div className="flex flex-wrap justify-center items-center mx-5">
-            <Items />
-          </div>
-          <Footer />
+      <div className={`${background}`}>
+        <h2 className={`${textBold} title-font text-center text-xl py-6`}>
+          Top Deals
+        </h2>
+        <div className="flex flex-wrap justify-center items-center mx-10">
+          <Items />
         </div>
-      ) : (
-        <div className="bg-slate-900">
-          <h2 className="text-white title-font text-center text-xl py-3 pt-6">
-            Top Deals
-          </h2>
-          <div className="flex flex-wrap justify-center items-center px-5">
-            <Items />
-          </div>
-          <Footer />
-        </div>
-      )}
+        <Footer />
+      </div>
     </>
   );
 }
