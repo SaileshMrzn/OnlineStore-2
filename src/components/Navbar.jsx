@@ -59,7 +59,7 @@ export default function Navbar() {
               : "text-white bg-slate-900 shadow-slate-800 drop-shadow-md"
           }`}
         >
-          <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+          <div className="container mx-auto flex flex-wrap py-5 px-14 flex-col md:flex-row items-center">
             <a className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
               <a href="/" className="ml-3 text-xl">
                 <span className={`${theme !== "dark" ? "" : "text-slate-100"}`}>
@@ -71,8 +71,13 @@ export default function Navbar() {
               </a>
             </a>
             <nav className="md:ml-auto flex flex-wrap items-center text-base justify-center">
-              <div>
+              <div className="relative">
                 <img src={shoppingCart} alt="" />
+                <div
+                  className={`bg-pink-400 rounded-[50%] absolute px-1 -top-2 -right-2 border-2 text-xs text-white`}
+                >
+                  6
+                </div>
               </div>
               <form action="" className="relative" onSubmit={handleSearch}>
                 <input

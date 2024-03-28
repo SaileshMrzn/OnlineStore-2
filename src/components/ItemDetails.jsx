@@ -124,6 +124,18 @@ export default function ItemDetails() {
                       ${detail.price}
                     </span>
                   </div>
+                  <button
+                    type="button"
+                    className={`${border} ${textRegular} border-2 px-8 py-2 mt-6 mr-2 rounded-lg hover:bg-pink-400 hover:text-white`}
+                  >
+                    Buy now
+                  </button>
+                  <button
+                    type="button"
+                    className={`${border} ${textRegular} border-2 px-8 py-2 rounded-lg hover:bg-pink-400 hover:text-white`}
+                  >
+                    Add to cart
+                  </button>
                 </div>
               </div>
             </div>
