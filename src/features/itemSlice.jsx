@@ -23,6 +23,7 @@ const initialState = {
   filteredItems: [],
   loader: true,
   dark: false,
+  cartCounter: 0,
 };
 
 const itemSlice = createSlice({
@@ -37,6 +38,9 @@ const itemSlice = createSlice({
     },
     setThemeState(state, { payload }) {
       state.dark = payload;
+    },
+    incrementCartCounter: (state, { payload }) => {
+      state.cartCounter = payload;
     },
   },
   extraReducers: (builder) => {
@@ -65,5 +69,10 @@ export const getAllItems = (state) => state.items.items;
 export const getAllDetails = (state) => state.items.itemDetails;
 export const getLoaderState = (state) => state.items.loader;
 export const getThemeState = (state) => state.items.dark;
-export const { removeItemDetail, setFilteredItems, setThemeState } =
-  itemSlice.actions;
+export const getCartCounterState = (state) => state.items.cartCounter;
+export const {
+  removeItemDetail,
+  setFilteredItems,
+  setThemeState,
+  incrementCartCounter,
+} = itemSlice.actions;

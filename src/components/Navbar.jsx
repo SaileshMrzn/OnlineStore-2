@@ -5,11 +5,11 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "../style.css";
 import {
-  fetchAsyncItems,
   getAllItems,
   getThemeState,
   setFilteredItems,
   setThemeState,
+  getCartCounterState,
 } from "../features/itemSlice";
 import useLocalStorage from "../hooks/useLocalStorage";
 import shoppingCart from "../icons/basket2.png";
@@ -18,6 +18,7 @@ export default function Navbar() {
   const dispatch = useDispatch();
   const [term, setTerm] = useState("");
   const items = useSelector(getAllItems);
+  const cartCounter = useSelector(getCartCounterState);
 
   const handleSearch = (e) => {
     const filteredItems = items.filter((item) =>
@@ -76,7 +77,7 @@ export default function Navbar() {
                 <div
                   className={`bg-pink-400 rounded-[50%] absolute px-1 -top-2 -right-2 border-2 text-xs text-white`}
                 >
-                  6
+                  {localStorage.getItem("cartCount")}
                 </div>
               </div>
               <form action="" className="relative" onSubmit={handleSearch}>
