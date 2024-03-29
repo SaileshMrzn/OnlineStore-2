@@ -20,6 +20,7 @@ export const fetchAsyncItemDetail = createAsyncThunk(
 const initialState = {
   items: [],
   itemDetails: [],
+  cartItems: [],
   filteredItems: [],
   loader: true,
   dark: false,
@@ -41,6 +42,9 @@ const itemSlice = createSlice({
     },
     incrementCartCounter: (state, { payload }) => {
       state.cartCounter = payload;
+    },
+    addCartItems: (state, { payload }) => {
+      state.cartItems.push(payload);
     },
   },
   extraReducers: (builder) => {
@@ -70,9 +74,11 @@ export const getAllDetails = (state) => state.items.itemDetails;
 export const getLoaderState = (state) => state.items.loader;
 export const getThemeState = (state) => state.items.dark;
 export const getCartCounterState = (state) => state.items.cartCounter;
+export const getCartItems = (state) => state.items.cartItems;
 export const {
   removeItemDetail,
   setFilteredItems,
   setThemeState,
   incrementCartCounter,
+  addCartItems,
 } = itemSlice.actions;

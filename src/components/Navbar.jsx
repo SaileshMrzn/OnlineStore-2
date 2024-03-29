@@ -73,12 +73,14 @@ export default function Navbar() {
             </a>
             <nav className="md:ml-auto flex flex-wrap items-center text-base justify-center">
               <div className="relative">
-                <img src={shoppingCart} alt="" />
-                <div
-                  className={`bg-pink-400 rounded-[50%] absolute px-1 -top-2 -right-2 border-2 text-xs text-white`}
-                >
-                  {localStorage.getItem("cartCount")}
-                </div>
+                <Link to="/cartItems">
+                  <img src={shoppingCart} alt="" />
+                  <div
+                    className={`bg-pink-400 rounded-[50%] absolute px-1 -top-2 -right-2 border-2 text-xs text-white`}
+                  >
+                    {localStorage.getItem("cartCount")}
+                  </div>
+                </Link>
               </div>
               <form action="" className="relative" onSubmit={handleSearch}>
                 <input

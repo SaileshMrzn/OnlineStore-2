@@ -11,6 +11,7 @@ import {
   getThemeState,
   incrementCartCounter,
   getCartCounterState,
+  addCartItems,
 } from "../features/itemSlice";
 import useLocalStorage from "../hooks/useLocalStorage";
 
@@ -36,6 +37,7 @@ export default function ItemDetails() {
     alert("added to cart");
     const newCartCount = cartCount + 1;
     setCartCount(newCartCount);
+    dispatch(addCartItems(...details));
   };
 
   useEffect(() => {
