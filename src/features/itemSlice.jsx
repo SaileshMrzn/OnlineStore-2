@@ -24,7 +24,8 @@ const initialState = {
   filteredItems: [],
   loader: true,
   dark: false,
-  cartCounter: 0,
+  totalPrice: 0,
+  totalQuantity: 0,
 };
 
 const itemSlice = createSlice({
@@ -40,11 +41,53 @@ const itemSlice = createSlice({
     setThemeState(state, { payload }) {
       state.dark = payload;
     },
-    incrementCartCounter: (state, { payload }) => {
-      state.cartCounter = payload;
-    },
+
     addCartItems: (state, { payload }) => {
-      state.cartItems.push(payload);
+      const itemIndex = state.cartItems.findIndex(
+        (item) => item.id === payload.id
+      );
+
+      if (itemIndex >= 0) {
+        state.cartItems[itemIndex].quantity += 1;
+      } else {
+        state.cartItems.push({ ...payload, quantity: 1 });
+      }
+    },
+
+    incrementQuantity: (state, { payload }) => {
+      state.cartItems = state.cartItems.map((data) => {
+        if (data.id === payload.id) {
+          return { ...data, quantity: data.quantity + 1 };
+        }
+      });
+    },
+    decrementQuantity: (state, { payload }) => {
+      state.cartItems = state.cartItems.map((data) => {
+        if (data.id === payload.id) {
+          return { ...data, quantity: data.quantity - 1 };
+        }
+      });
+    },
+
+    removeCartItem: (state, { payload }) => {
+      state.cartItems = state.cartItems.filter(
+        (item) => item.id !== payload.id
+      );
+    },
+
+    getCartTotal: (state) => {
+      const { totalPrice, totalQuantity } = state.cartItems.reduce(
+        (total, item) => {
+          const { price, quantity } = item;
+          const itemTotal = price * quantity;
+          total.totalPrice += itemTotal;
+          total.totalQuantity += quantity;
+          return total;
+        },
+        { totalPrice: 0, totalQuantity: 0 }
+      );
+      state.totalPrice = parseFloat(totalPrice).toFixed(2);
+      state.totalQuantity = totalQuantity;
     },
   },
   extraReducers: (builder) => {
@@ -73,7 +116,6 @@ export const getAllItems = (state) => state.items.items;
 export const getAllDetails = (state) => state.items.itemDetails;
 export const getLoaderState = (state) => state.items.loader;
 export const getThemeState = (state) => state.items.dark;
-export const getCartCounterState = (state) => state.items.cartCounter;
 export const getCartItems = (state) => state.items.cartItems;
 export const {
   removeItemDetail,
@@ -81,4 +123,10 @@ export const {
   setThemeState,
   incrementCartCounter,
   addCartItems,
+  getCartTotal,
+  incrementQuantity,
+  decrementQuantity,
+  removeCartItem,
 } = itemSlice.actions;
+
+// Todo: separate slice for cartItems.

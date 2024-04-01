@@ -1,5 +1,5 @@
 // ItemDetails.js
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import "../style.css";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,18 +9,15 @@ import {
   getLoaderState,
   removeItemDetail,
   getThemeState,
-  incrementCartCounter,
-  getCartCounterState,
   addCartItems,
+  getCartTotal,
 } from "../features/itemSlice";
-import useLocalStorage from "../hooks/useLocalStorage";
 
 export default function ItemDetails() {
   const { id } = useParams();
   const details = useSelector(getAllDetails);
   const loader = useSelector(getLoaderState);
   const theme = useSelector(getThemeState);
-  const cartCounter = useSelector(getCartCounterState);
 
   const dispatch = useDispatch();
 
@@ -31,19 +28,11 @@ export default function ItemDetails() {
     };
   }, [id]);
 
-  let [cartCount, setCartCount] = useLocalStorage("cartCount", cartCounter);
-
   const addToCart = () => {
     alert("added to cart");
-    const newCartCount = cartCount + 1;
-    setCartCount(newCartCount);
     dispatch(addCartItems(...details));
+    dispatch(getCartTotal());
   };
-
-  useEffect(() => {
-    setCartCount(cartCount);
-    dispatch(incrementCartCounter(cartCount));
-  }, [cartCount]);
 
   const textRegular = theme === false ? "text-gray-500" : "text-gray-300";
   const textBold = theme === false ? "text-gray-900" : "text-gray-100";
