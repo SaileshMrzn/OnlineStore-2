@@ -1,4 +1,3 @@
-// import React from "react";
 import { Link } from "react-router-dom";
 import { IoSearch } from "react-icons/io5";
 import { useEffect, useState } from "react";
@@ -23,7 +22,6 @@ export default function Navbar() {
     const filteredItems = items.filter((item) =>
       item.title.toLowerCase().includes(term.toLowerCase())
     );
-    console.log(filteredItems);
     if (filteredItems.length === 0 || term == "") {
       alert("No results found");
     }
@@ -36,7 +34,6 @@ export default function Navbar() {
   const theme_state = useSelector(getThemeState);
 
   const handleToggle = () => {
-    console.log("toggled");
     setTheme(theme === "light" ? "dark" : "light");
   };
 
@@ -45,9 +42,6 @@ export default function Navbar() {
       ? dispatch(setThemeState(true))
       : dispatch(setThemeState(false));
   }, [theme]);
-
-  console.log(theme);
-  console.log(theme_state);
 
   return (
     <>
@@ -73,7 +67,6 @@ export default function Navbar() {
             <nav className="md:ml-auto flex flex-wrap items-center text-base justify-center">
               <div className="relative">
                 <Link to="/cartItems">
-                  {/* <img src={shoppingCart} alt="" /> */}
                   <BsCart2 style={{ fontSize: "25px" }} />
                   <div
                     className={`bg-pink-400 rounded-[50%] absolute px-1 -top-2 -right-2 border-2 text-xs text-white`}

@@ -4,7 +4,6 @@ import {
   getThemeState,
   getCartItems,
   getCartTotal,
-  addCartItems,
   incrementQuantity,
   decrementQuantity,
   removeCartItem,
@@ -22,7 +21,6 @@ function CartItems() {
     dispatch(getCartTotal());
   }, [cartItems]);
 
-  const textRegular = theme === false ? "text-gray-500" : "text-gray-300";
   const textBold = theme === false ? "text-gray-900" : "text-gray-100";
   const background = theme === false ? "" : "bg-slate-900";
   const cartbackground = theme === false ? "bg-gray-200" : "bg-gray-700";
@@ -69,7 +67,9 @@ function CartItems() {
                               <button
                                 class={`border-${border} border rounded-md py-2 px-4 mr-2`}
                                 onClick={() => {
-                                  dispatch(decrementQuantity(item));
+                                  item.quantity > 1
+                                    ? dispatch(decrementQuantity(item))
+                                    : alert("Quantity cannot be less than 1");
                                 }}
                               >
                                 -
